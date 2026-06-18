@@ -324,25 +324,31 @@ export default function App() {
     });
   }, [checkAndUnlockAchievements]);
 
-  // Save progress periodically every 30 seconds
+  // Save progress periodically every 30 seconds without resetting interval on player state change
   useEffect(() => {
-    if (!player) return;
     const interval = setInterval(() => {
-      savePlayerState(player);
-      syncPendingData(player);
+      setPlayer(currentPlayer => {
+        if (currentPlayer) {
+          savePlayerState(currentPlayer);
+          syncPendingData(currentPlayer);
+        }
+        return currentPlayer;
+      });
     }, 30000);
     return () => clearInterval(interval);
-  }, [player]);
+  }, []);
 
   // Save on beforeunload
   useEffect(() => {
-    if (!player) return;
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      savePlayerState(player);
+      setPlayer(currentPlayer => {
+        if (currentPlayer) savePlayerState(currentPlayer);
+        return currentPlayer;
+      });
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [player]);
+  }, []);
 
   // Fetch Global Leaderboard from Supabase
   useEffect(() => {
@@ -361,14 +367,23 @@ export default function App() {
         }
 
         if (data) {
-          const formatted = data.map((d, i) => ({
-            name: d.nome === player.name ? `${d.nome} (Você)` : d.nome,
-            rank: i + 1,
-            cashEarned: d.cash,
-            vip: d.vip || null,
-            statusText: 'Cidadão Oficial',
-            isPlayer: d.nome === player.name
-          }));
+          const formatted = data.map((d, i) => {
+            const isMe = d.nome === player.name;
+            // Use live local cash for the current player to avoid lag in the UI
+            const displayCash = isMe ? Math.max(d.cash, player.cash) : d.cash;
+            return {
+              name: isMe ? `${d.nome} (Você)` : d.nome,
+              rank: i + 1,
+              cashEarned: displayCash,
+              vip: d.vip || null,
+              statusText: 'Cidadão Oficial',
+              isPlayer: isMe
+            };
+          });
+          // Re-sort in case the live cash changes the order slightly in the frontend
+          formatted.sort((a, b) => b.cashEarned - a.cashEarned);
+          // Fix ranks after re-sort
+          formatted.forEach((item, index) => item.rank = index + 1);
           setGlobalLeaderboard(formatted);
         }
       } catch (err) {
@@ -377,9 +392,9 @@ export default function App() {
     };
     
     fetchLeaderboard();
-    const interval = setInterval(fetchLeaderboard, 60000); // refresh every minute
+    const interval = setInterval(fetchLeaderboard, 30000); // refresh every 30s
     return () => clearInterval(interval);
-  }, [player?.name]);
+  }, [player?.name, player?.cash]);
 
   // Jail timer ticker countdown
   useEffect(() => {
