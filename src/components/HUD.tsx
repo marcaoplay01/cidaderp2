@@ -1,9 +1,9 @@
-import { 
-  Coins, 
-  Zap, 
-  Award, 
-  Volume2, 
-  VolumeX, 
+import {
+  Coins,
+  Zap,
+  Award,
+  Volume2,
+  VolumeX,
   User,
   Clock,
   CloudSun,
@@ -66,7 +66,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
   return (
     <div id="game-hud-container" className="w-full space-y-4 font-sans text-white">
       {/* Top Server Panel info */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -79,7 +79,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
         {/* Left: Avatar info & Level */}
         <div className="flex items-center gap-4">
           <div className="relative">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05 }}
               className="relative flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-tr from-zinc-900 to-zinc-800 border-2 border-zinc-700/60 text-2xl font-bold shadow-lg shadow-black/50"
             >
@@ -96,13 +96,12 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
                 {player.name}
               </span>
               {player.vipLevel ? (
-                <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-black tracking-wider uppercase font-orbitron flex items-center gap-1 shadow-lg border ${
-                  player.vipLevel === 'bronze'
+                <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-black tracking-wider uppercase font-orbitron flex items-center gap-1 shadow-lg border ${player.vipLevel === 'bronze'
                     ? 'bg-amber-950/40 text-amber-400 border-amber-600/30'
                     : player.vipLevel === 'prata'
-                    ? 'bg-zinc-800/40 text-zinc-300 border-zinc-400/30'
-                    : 'bg-yellow-500/10 text-yellow-405 border-yellow-400/40 animate-pulse text-yellow-400'
-                }`}>
+                      ? 'bg-zinc-800/40 text-zinc-300 border-zinc-400/30'
+                      : 'bg-yellow-500/10 text-yellow-405 border-yellow-400/40 animate-pulse text-yellow-400'
+                  }`}>
                   <Crown className="h-3 w-3 shrink-0" />
                   VIP {player.vipLevel.toUpperCase()}
                 </span>
@@ -140,14 +139,13 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
           {/* GTA cash differences floating on top */}
           <AnimatePresence>
             {cashDifference !== null && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 10, scale: 0.8 }}
                 animate={{ opacity: 1, y: -25, scale: 1.1 }}
                 exit={{ opacity: 0, y: -40 }}
                 transition={{ duration: 0.6 }}
-                className={`absolute right-0 bottom-full mb-2 font-black font-orbitron text-sm md:text-base tracking-widest leading-none ${
-                  cashDifference >= 0 ? 'text-green-400 drop-shadow-[0_0_8px_rgba(46,204,113,0.6)]' : 'text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,0.6)]'
-                }`}
+                className={`absolute right-0 bottom-full mb-2 font-black font-orbitron text-sm md:text-base tracking-widest leading-none ${cashDifference >= 0 ? 'text-green-400 drop-shadow-[0_0_8px_rgba(46,204,113,0.6)]' : 'text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,0.6)]'
+                  }`}
               >
                 {cashDifference >= 0 ? `+ R$ ${cashDifference.toLocaleString('pt-BR')}` : `- R$ ${Math.abs(cashDifference).toLocaleString('pt-BR')}`}
               </motion.div>
@@ -155,7 +153,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
           </AnimatePresence>
 
           {(player.dirtyCash || 0) > 0 && (
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: [0.95, 1.03, 0.95] }}
               transition={{ repeat: Infinity, duration: 2.5 }}
@@ -190,7 +188,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
       {/* Level and Energy Status Grid styled like tactical progress panels */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* XP Progress Card */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
@@ -198,7 +196,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
         >
           {/* Subtle blueprint grid behind */}
           <div className="absolute inset-0 bg-[radial-gradient(#1c1c1f_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none" />
-          
+
           <div className="flex items-center justify-between text-xs font-black uppercase tracking-wider text-zinc-400 mb-2 relative z-10 font-orbitron">
             <span className="flex items-center gap-1.5 text-zinc-300">
               <Award className="h-4 w-4 text-amber-400" />
@@ -210,7 +208,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
           </div>
 
           <div className="w-full h-4 rounded-lg bg-zinc-900/50 overflow-hidden border border-zinc-850 p-1 relative z-10">
-            <motion.div 
+            <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${xpPercentage}%` }}
               transition={{ duration: 1, ease: 'easeOut' }}
@@ -223,7 +221,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
         </motion.div>
 
         {/* Energy Card */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.15 }}
@@ -231,7 +229,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
         >
           {/* Subtle blueprint grid behind */}
           <div className="absolute inset-0 bg-[radial-gradient(#1c1c1f_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none" />
-          
+
           <div className="flex items-center justify-between text-xs font-black uppercase tracking-wider text-zinc-400 mb-2 relative z-10 font-orbitron">
             <span className="flex items-center gap-1.5 text-zinc-300 animate-pulse">
               <Zap className="h-4 w-4 text-emerald-400" />
@@ -243,7 +241,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
           </div>
 
           <div className="w-full h-4 rounded-lg bg-zinc-900/50 overflow-hidden border border-zinc-850 p-1 relative z-10">
-            <motion.div 
+            <motion.div
               initial={{ width: 0 }}
               animate={{ width: `${energyPercentage}%` }}
               transition={{ duration: 1, ease: 'easeOut' }}
