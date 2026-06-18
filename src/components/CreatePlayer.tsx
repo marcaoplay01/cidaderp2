@@ -216,7 +216,7 @@ export default function CreatePlayer({ onCreate }: CreatePlayerProps) {
                   </div>
                   <div>
                     <span className="text-zinc-650 text-[8px] block uppercase font-sans font-bold">Residência Primária</span>
-                    <span className="text-zinc-300 font-bold">FLAVELA BARRACO</span>
+                    <span className="text-zinc-300 font-bold">BANCO DA PRACA</span>
                   </div>
                 </div>
               </div>
@@ -224,7 +224,7 @@ export default function CreatePlayer({ onCreate }: CreatePlayerProps) {
               <div className="bg-zinc-900/60 p-2.5 rounded border border-zinc-900/80 text-[11px] space-y-1 text-zinc-400">
                 <div className="flex justify-between">
                   <span>💰 Capital Inicial:</span>
-                  <strong className="text-emerald-400 font-bold">R$ 50,00</strong>
+                  <strong className="text-emerald-400 font-bold">R$ 2.500,00</strong>
                 </div>
                 <div className="flex justify-between">
                   <span>🚲 Garagem Inicial:</span>

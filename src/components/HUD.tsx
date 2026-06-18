@@ -108,7 +108,7 @@ export default function HUD({ player, onMuteToggle, isMuted }: HUDProps) {
                 </span>
               ) : (
                 <span className="rounded-md bg-green-500/10 px-2.5 py-0.5 text-[9px] font-black tracking-widest uppercase text-emerald-400 border border-green-500/20 font-orbitron">
-                  Cidadão RP
+                  Cidadão
                 </span>
               )}
             </div>
