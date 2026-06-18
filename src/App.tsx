@@ -68,6 +68,7 @@ import CidadeNewsSection, { NPC_NAMES, NPC_HANDLES, NPC_AVATARS, COMMENT_RESPONS
 import RandomEvents, { RPRandomEvent, EVENTS_POOL } from './components/RandomEvents';
 import { playSound, toggleMute, getMutedState } from './utils/audio';
 import { savePlayerState, loadPlayerState, syncPendingData } from './lib/persistence';
+import { supabase } from './lib/supabase';
 
 
 
@@ -77,11 +78,13 @@ export default function App() {
   const [player, setPlayer] = useState<PlayerState | null>(null);
   const [activeTab, setActiveTab] = useState<'jobs' | 'vehicles' | 'properties' | 'businesses' | 'store' | 'stats' | 'crime' | 'factions' | 'bank' | 'news'>('jobs');
   const [isAudioMuted, setIsAudioMuted] = useState(false);
-  const [jailTimer, setJailTimer] = useState<number>(0);
-  
-  // Booster state variables for Special Events
+  const [activeJob, setActiveJob] = useState<Job | null>(null);
+  const [jobMinigameState, setJobMinigameState] = useState<'idle' | 'playing' | 'success' | 'failure'>('idle');
+  const [jailTimer, setJailTimer] = useState(0);
+  const [activeEvent, setActiveEvent] = useState<EconomyEvent | null>(null);
   const [activeBoosterType, setActiveBoosterType] = useState<'double_salary' | 'free_energy' | 'double_crime' | null>(null);
   const [boosterTimeRemaining, setBoosterTimeRemaining] = useState<number>(0);
+  const [globalLeaderboard, setGlobalLeaderboard] = useState<SimulatedLeaderboardEntry[]>([]);
   
   // Real-time Business Vaults / Accumulated passive cash state
   const [accumulatedProfits, setAccumulatedProfits] = useState<{ [id: string]: number }>({});
@@ -341,6 +344,43 @@ export default function App() {
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [player]);
+
+  // Fetch Global Leaderboard from Supabase
+  useEffect(() => {
+    if (!player) return;
+    const fetchLeaderboard = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('jogadores')
+          .select('nome, cash, vip')
+          .order('cash', { ascending: false })
+          .limit(15);
+        
+        if (error) {
+          console.error('Error fetching leaderboard', error);
+          return;
+        }
+
+        if (data) {
+          const formatted = data.map((d, i) => ({
+            name: d.nome === player.name ? `${d.nome} (Você)` : d.nome,
+            rank: i + 1,
+            cashEarned: d.cash,
+            vip: d.vip || null,
+            statusText: 'Cidadão Oficial',
+            isPlayer: d.nome === player.name
+          }));
+          setGlobalLeaderboard(formatted);
+        }
+      } catch (err) {
+        console.error('Failed to load leaderboard', err);
+      }
+    };
+    
+    fetchLeaderboard();
+    const interval = setInterval(fetchLeaderboard, 60000); // refresh every minute
+    return () => clearInterval(interval);
+  }, [player?.name]);
 
   // Jail timer ticker countdown
   useEffect(() => {
@@ -867,19 +907,17 @@ export default function App() {
   // Leaderboard fetcher (Prepared for Database Integration)
   const getLeaderboardList = (): SimulatedLeaderboardEntry[] => {
     if (!player) return [];
+    if (globalLeaderboard.length > 0) return globalLeaderboard;
     
-    // TODO: Fetch real leaderboard from backend API here
-    // For MVP phase, we only return the current active player.
-    const playerEntry = {
+    // Fallback if offline or loading
+    return [{
       name: `${player.name} (Você)`,
       rank: 1,
       cashEarned: player.stats.totalEarned,
       vip: player.vipLevel || null,
-      statusText: 'Ativo sintonizado no grinding!',
+      statusText: 'Modo Offline (Aguardando Sync)',
       isPlayer: true
-    };
-
-    return [playerEntry];
+    }];
   };
 
   // COMPLETE ACTIVE JOB (Called from active minigame)
