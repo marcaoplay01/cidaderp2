@@ -1,0 +1,6 @@
+{
+  "name": "Cidade RP Tycoon",
+  "description": "Um simulador de vida e negócios em uma cidade brasileira inspirado em GTA RP.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
