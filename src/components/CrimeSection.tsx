@@ -59,8 +59,8 @@ export const CRIMINAL_ACTIVITIES: CriminalActivity[] = [
     energyCost: 15,
     baseSuccessChance: 85,
     reputationGain: 1,
-    minReward: 320,
-    maxReward: 780,
+    minReward: 200,
+    maxReward: 450,
     fine: 250,
     jailTime: 6,
     description: 'Furtar aparelhos eletrônicos e relógios de turistas no calçadão esburacado de Copacabana de forma sorrateira.',
@@ -74,8 +74,8 @@ export const CRIMINAL_ACTIVITIES: CriminalActivity[] = [
     energyCost: 25,
     baseSuccessChance: 70,
     reputationGain: 3,
-    minReward: 1600,
-    maxReward: 3350,
+    minReward: 800,
+    maxReward: 1500,
     fine: 1200,
     jailTime: 12,
     description: 'Venda de pacotes fechados e bagulhos ilegais para viciados e baladeiros noturnos nas esquinas e ruelas sombrias da Lapa.',
@@ -89,8 +89,8 @@ export const CRIMINAL_ACTIVITIES: CriminalActivity[] = [
     energyCost: 35,
     baseSuccessChance: 60,
     reputationGain: 8,
-    minReward: 3200,
-    maxReward: 6400,
+    minReward: 1600,
+    maxReward: 3200,
     fine: 2200,
     jailTime: 15,
     description: 'Aposte corridas clandestinas de alta velocidade contra superesportivos e motos modificadas na rodovia principal.',
@@ -105,8 +105,8 @@ export const CRIMINAL_ACTIVITIES: CriminalActivity[] = [
     energyCost: 40,
     baseSuccessChance: 55,
     reputationGain: 7,
-    minReward: 4800,
-    maxReward: 9500,
+    minReward: 1500,
+    maxReward: 3500,
     fine: 3500,
     jailTime: 18,
     description: 'Grite com a balconista, estoure a registradora e limpe todo o caixa confidencial de uma loja de posto na Autoestrada às 03:00 da manhã.',
@@ -120,8 +120,8 @@ export const CRIMINAL_ACTIVITIES: CriminalActivity[] = [
     energyCost: 55,
     baseSuccessChance: 45,
     reputationGain: 14,
-    minReward: 12000,
-    maxReward: 25000,
+    minReward: 4500,
+    maxReward: 8000,
     fine: 7500,
     jailTime: 25,
     description: 'Copie a chave codificada, intercepte as travas e leve SUVs de luxo importadas direto para o desmanche na Baixada Fluminense.',
@@ -136,8 +136,8 @@ export const CRIMINAL_ACTIVITIES: CriminalActivity[] = [
     energyCost: 75,
     baseSuccessChance: 35,
     reputationGain: 30,
-    minReward: 42000,
-    maxReward: 85000,
+    minReward: 8500,
+    maxReward: 15000,
     fine: 18000,
     jailTime: 35,
     description: 'Opere rotas de logística de ferro carregando armamentos pesados e mercadorias valiosas direto para o centro do complexo.',
@@ -191,7 +191,7 @@ export default function CrimeSection({
 
   // Multiplier formulas:
   // 1. Reputation reward bonus (each point of rep increases illegal payouts by +1%, up to +100%)
-  const repRewardMultiplier = 1 + (reputation * 0.0125); // +1.25% per rep point
+  const repRewardMultiplier = 1 + (reputation * 0.005); // +0.5% per rep point (max 30%)
   
   // 2. Reputation alert deduction (each point of rep decreases success chance by -0.12%, capped at max -15% reduction)
   const repSuccessDeduction = Math.min(18, reputation * 0.12);

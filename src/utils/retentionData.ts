@@ -33,9 +33,9 @@ export interface DailyLoginReward {
 export const DAILY_LOGIN_CALENDAR: DailyLoginReward[] = [
   { day: 1, rewardText: 'Kit Inicial de Boas-vindas', rewardCash: 5000, rewardXp: 150 },
   { day: 2, rewardText: 'Vale-Alimentação de Cidadão', rewardCash: 12000, rewardXp: 250 },
-  { day: 3, rewardText: 'Suprimento do Morro', rewardCash: 25000, rewardXp: 400 },
+  { day: 3, rewardText: 'Suprimento do Morro', rewardCash: 2500, rewardXp: 400 },
   { day: 4, rewardText: '🕶️ Juliet Ouro 24K (Item Raro!)', rewardCash: 15000, rewardXp: 500, itemRewardId: 'juliet_gold' },
-  { day: 5, rewardText: 'Incentivo de Profissional', rewardCash: 45000, rewardXp: 750 },
+  { day: 5, rewardText: 'Incentivo de Profissional', rewardCash: 5000, rewardXp: 750 },
   { day: 6, rewardText: 'Financiamento do Detran', rewardCash: 85000, rewardXp: 1200 },
   { day: 7, rewardText: '👑 Rolex Submariner (Item Lendário!)', rewardCash: 150000, rewardXp: 2500, itemRewardId: 'relogio_rolex' }
 ];
@@ -198,7 +198,7 @@ export const ACHIEVEMENTS_LIST: Achievement[] = [
     description: 'Tenha 3 ou mais propriedades escrituradas e adquiridas.',
     category: 'Patrimônio',
     icon: '🏰',
-    rewardCash: 35000,
+    rewardCash: 3500,
     rewardXp: 800,
     check: (player) => player.ownedProperties.length >= 3
   },
@@ -238,12 +238,12 @@ export const ACHIEVEMENTS_LIST: Achievement[] = [
 export function generateDailyQuests(player: PlayerState): DailyQuest[] {
   // We formulate 3 random daily activities appropriate for current stats
   const templates: { desc: string; type: DailyQuest['type']; target: number; rewardC: number; rewardX: number }[] = [
-    { desc: 'Faça 5 entregas como Motoboy / Delivery', type: 'deliveries', target: 5, rewardC: 15000, rewardX: 250 },
-    { desc: 'Trabalhe de Mecânico da Oficina AP 3 vezes', type: 'mechanic', target: 3, rewardC: 12000, rewardX: 200 },
-    { desc: 'Realize 4 viagens como Motorista de Uber', type: 'rides', target: 4, rewardC: 18000, rewardX: 300 },
-    { desc: 'Complete 3 atividades de Racha ou Roubo no Submundo', type: 'crime', target: 3, rewardC: 22000, rewardX: 350 },
-    { desc: 'Compre 4 Hambúgueres no bico de Lanchonete', type: 'burger', target: 4, rewardC: 8000, rewardX: 150 },
-    { desc: 'Fature R$ 30.000 em receitas limpas gerais', type: 'earn', target: 30000, rewardC: 20000, rewardX: 300 }
+    { desc: 'Faça 5 entregas como Motoboy / Delivery', type: 'deliveries', target: 5, rewardC: 800, rewardX: 250 },
+    { desc: 'Trabalhe de Mecânico da Oficina AP 3 vezes', type: 'mechanic', target: 3, rewardC: 650, rewardX: 200 },
+    { desc: 'Realize 4 viagens como Motorista de Uber', type: 'rides', target: 4, rewardC: 1200, rewardX: 300 },
+    { desc: 'Complete 3 atividades de Racha ou Roubo no Submundo', type: 'crime', target: 3, rewardC: 1500, rewardX: 350 },
+    { desc: 'Compre 4 Hambúgueres no bico de Lanchonete', type: 'burger', target: 4, rewardC: 450, rewardX: 150 },
+    { desc: 'Fature R$ 30.000 em receitas limpas gerais', type: 'earn', target: 30000, rewardC: 1200, rewardX: 300 }
   ];
 
   // Pick 3 random quests

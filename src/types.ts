@@ -245,7 +245,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'A melhor moto para trabalhos na cidade e na estrada.',
     speed: 175,
     consumption: 4, 
-    multiplier: 2.5,
+    multiplier: 1.5,
     type: 'moto',
     icon: 'Motorcycle',
     vipRequired: 'bronze'
@@ -257,7 +257,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Tecnologia de pista disponível para as ruas.',
     speed: 330,
     consumption: 10, 
-    multiplier: 8.0,
+    multiplier: 2.5,
     type: 'moto',
     icon: 'Motorcycle',
     vipRequired: 'ouro'
@@ -269,7 +269,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'O ronco ensurdecedor de 4 cilindros. Ostente na quebrada com velocidade insana e o maior bônus de duas rodas.',
     speed: 210,
     consumption: 8, 
-    multiplier: 2.3,
+    multiplier: 1.4,
     type: 'moto',
     icon: 'Gauge',
   },
@@ -282,7 +282,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Lenda nacional. Equipado com a escada de firma no teto, que desbloqueia velocidade e fôlego extras de trabalho.',
     speed: 130,
     consumption: 5,
-    multiplier: 1.6,
+    multiplier: 1.3,
     type: 'car',
     icon: 'Car',
   },
@@ -293,7 +293,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Motor AP turbinado que espirra forte. Excelente torque para atuar como motorista de aplicativo.',
     speed: 160,
     consumption: 8,
-    multiplier: 1.9,
+    multiplier: 1.4,
     type: 'car',
     icon: 'Car',
   },
@@ -304,7 +304,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Compacto, econômico e fácil de estacionar.',
     speed: 145,
     consumption: 5,
-    multiplier: 1.8,
+    multiplier: 1.35,
     type: 'car',
     icon: 'Car',
   },
@@ -315,7 +315,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Um clássico nacional confiável para qualquer trabalho.',
     speed: 145,
     consumption: 5,
-    multiplier: 1.8,
+    multiplier: 1.35,
     type: 'car',
     icon: 'Car',
   },
@@ -326,7 +326,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Ótima escolha para motoristas de aplicativo.',
     speed: 185,
     consumption: 8,
-    multiplier: 2.4,
+    multiplier: 1.5,
     type: 'car',
     icon: 'Car',
   },
@@ -337,7 +337,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Automóvel espaçoso e com KIT GNV cilindro duplo. O campeão imbatível dos taxistas de aeroporto.',
     speed: 145,
     consumption: 4, // super efficient on GNV!
-    multiplier: 2.3,
+    multiplier: 1.45,
     type: 'car',
     icon: 'CarFront',
   },
@@ -348,7 +348,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Conforto, confiabilidade e status em um único veículo.',
     speed: 230,
     consumption: 10,
-    multiplier: 3.5,
+    multiplier: 1.7,
     type: 'car',
     icon: 'Car',
   },
@@ -361,7 +361,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Visual agressivo, rodas escurecidas e design de nave. Chama muita atenção de passageiros VIP.',
     speed: 240,
     consumption: 11,
-    multiplier: 4.0,
+    multiplier: 1.9,
     type: 'sport',
     icon: 'Car',
     vipRequired: 'bronze'
@@ -373,7 +373,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Sublime esportivo com ronco direto e câmbio DSG dupla embreagem. Despenha velocidade extrema.',
     speed: 260,
     consumption: 13,
-    multiplier: 5.0,
+    multiplier: 2.1,
     type: 'sport',
     icon: 'Gauge',
     vipRequired: 'bronze'
@@ -385,7 +385,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'A máquina de asfalto definitiva. Ostentação milionária pura, acelerando de 0 a 100 km/h em 3 segundos.',
     speed: 315,
     consumption: 13,
-    multiplier: 6.8,
+    multiplier: 2.4,
     type: 'sport',
     icon: 'Gauge',
   },
@@ -396,7 +396,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Sedã premium com alma de carro de corrida.',
     speed: 330,
     consumption: 18,
-    multiplier: 8.0,
+    multiplier: 2.6,
     type: 'sport',
     icon: 'Gauge',
     },
@@ -407,7 +407,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Conhecido como Godzilla, domina qualquer arrancada.',
     speed: 350,
     consumption: 20,
-    multiplier: 10.0,
+    multiplier: 2.8,
     type: 'sport',
     icon: 'Gauge',
     vipRequired: 'ouro'
@@ -419,7 +419,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'O ápice da engenharia automotiva moderna.',
     speed: 350,
     consumption: 20,
-    multiplier: 10.0,
+    multiplier: 3.0,
     type: 'sport',
     icon: 'Gauge',
     vipRequired: 'ouro'
@@ -433,7 +433,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Caminhão leve excelente para entregas intermunicipais de médio porte e frete urbano rápido.',
     speed: 120,
     consumption: 14,
-    multiplier: 3.8,
+    multiplier: 1.6,
     type: 'truck',
     icon: 'Truck',
   },
@@ -444,7 +444,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'A lenda indestrutível das estradas da BR-116. Perfeito para transportes interestaduais de cargas maciças.',
     speed: 130,
     consumption: 17,
-    multiplier: 5.2,
+    multiplier: 2.2,
     type: 'truck',
     icon: 'Truck',
   },
@@ -455,7 +455,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Sem dúvida, o melhor caminhão do Brasil! Conforto, potência e robustez definem essa máquina.',
     speed: 140,
     consumption: 22,
-    multiplier: 8.5,
+    multiplier: 2.8,
     type: 'truck',
     icon: 'Truck',
   },
@@ -466,7 +466,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'O rei das estradas e sonho de qualquer caminhoneiro.',
     speed: 155,
     consumption: 28,
-    multiplier: 15.0,
+    multiplier: 3.5,
     type: 'truck',
     icon: 'Truck',
     vipRequired: 'ouro'
@@ -478,7 +478,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'A wagon de luxo superesportiva definitiva. Máxima sofisticação urbana e velocidade reservada para VIP Prata.',
     speed: 305,
     consumption: 5,
-    multiplier: 5.5,
+    multiplier: 2.2,
     type: 'sport',
     icon: 'Sparkles',
     vipRequired: 'prata',
@@ -490,7 +490,7 @@ export const VEHICLES: Vehicle[] = [
     description: 'Hipercarro com 1000cv híbridos. O topo absoluto da performance e status reservado para VIP Ouro.',
     speed: 340,
     consumption: 6,
-    multiplier: 8.5,
+    multiplier: 2.7,
     type: 'sport',
     icon: 'Crown',
     vipRequired: 'ouro',
@@ -518,7 +518,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 20,
     comfortLabel: 'Compacto',
     icon: 'Home',
-    passiveIncome: 0.2, // R$ 12 por minuto
+    passiveIncome: 0.05, // R$ 12 por minuto
     unlocksBusinessName: 'Pastelaria & Caldo de Cana',
   },
   {
@@ -530,7 +530,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 45,
     comfortLabel: 'Acolhedor',
     icon: 'Home',
-    passiveIncome: 0.9, // R$ 54 por minuto
+    passiveIncome: 0.15, // R$ 54 por minuto
     unlocksBusinessName: 'Adega & Distribuidora 24h',
   },
   {
@@ -542,7 +542,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 85,
     comfortLabel: 'Confortável',
     icon: 'Building',
-    passiveIncome: 3.5, // R$ 210 por minuto
+    passiveIncome: 0.5, // R$ 210 por minuto
     unlocksBusinessName: 'Eletro-Smuggling & Peças (RP)',
   },
   {
@@ -554,7 +554,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 150,
     comfortLabel: 'Alto Padrão',
     icon: 'Castle',
-    passiveIncome: 22.0, // R$ 1.320 por minuto
+    passiveIncome: 3.5, // R$ 1.320 por minuto
     unlocksBusinessName: 'Concessionária de Importados',
   },
   {
@@ -566,7 +566,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 250,
     comfortLabel: 'Ostentação Imperador',
     icon: 'Building',
-    passiveIncome: 85.0, // R$ 5.100 por minuto
+    passiveIncome: 15.0, // R$ 5.100 por minuto
   },
   {
     id: 'vip_loft',
@@ -577,7 +577,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 120,
     comfortLabel: 'VIP Bronze Line',
     icon: 'Home',
-    passiveIncome: 8.5, // R$ 510 por minuto
+    passiveIncome: 1.5, // R$ 510 por minuto
     vipRequired: 'bronze',
   },
   {
@@ -589,7 +589,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 220,
     comfortLabel: 'VIP Prata Prestige',
     icon: 'Building',
-    passiveIncome: 45.0, // R$ 2.700 por minuto
+    passiveIncome: 6.0, // R$ 2.700 por minuto
     vipRequired: 'prata',
   },
   {
@@ -601,7 +601,7 @@ export const PROPERTIES: Property[] = [
     maxEnergyBonus: 400,
     comfortLabel: 'VIP Ouro Sovereignty',
     icon: 'Castle',
-    passiveIncome: 180.0, // R$ 10.800 por minuto
+    passiveIncome: 25.0, // R$ 10.800 por minuto
     vipRequired: 'ouro',
   },
 ];
@@ -611,7 +611,7 @@ export const BUSINESSES: Business[] = [
     id: 'lava_jato',
     name: 'Lava Jato',
     price: 18000,
-    baseIncomePerSecond: 1.5, // ~ R$ 90 por minuto
+    baseIncomePerSecond: 0.5, // ~ R$ 90 por minuto
     upgradeCostFactor: 1.4,
     description: 'Lave os importados e motos esportivas da quebrada. Seu primeiro negócio próprio na Cidade RP.',
     icon: 'Droplet',
@@ -622,7 +622,7 @@ export const BUSINESSES: Business[] = [
     id: 'oficina',
     name: 'Oficina Custom',
     price: 45000,
-    baseIncomePerSecond: 4.5, // ~ R$ 270 por minuto
+    baseIncomePerSecond: 1.5, // ~ R$ 270 por minuto
     upgradeCostFactor: 1.5,
     description: 'Faça revisões mecânicas, upgrades de turbo de corrida e pintura neon em carros nacionais e importados.',
     icon: 'Wrench',
@@ -633,7 +633,7 @@ export const BUSINESSES: Business[] = [
     id: 'mercado_bairro',
     name: 'Mercado Express',
     price: 120000,
-    baseIncomePerSecond: 15.0, // ~ R$ 900 por minuto
+    baseIncomePerSecond: 5.0, // ~ R$ 900 por minuto
     upgradeCostFactor: 1.6,
     description: 'Gerencie o comércio local, as prateleiras de mantimentos e atenda os moradores do bairro.',
     icon: 'ShoppingBag',
@@ -644,7 +644,7 @@ export const BUSINESSES: Business[] = [
     id: 'posto_combustivel',
     name: 'Posto de Combustível',
     price: 350000,
-    baseIncomePerSecond: 50.0, // ~ R$ 3.000 por minuto
+    baseIncomePerSecond: 12.0, // ~ R$ 3.000 por minuto
     upgradeCostFactor: 1.7,
     description: 'O ponto de reabastecimento mais movimentado da rodovia de acesso à cidade grande.',
     icon: 'Fuel',
@@ -655,7 +655,7 @@ export const BUSINESSES: Business[] = [
     id: 'transportadora',
     name: 'Transportadora Express',
     price: 720000,
-    baseIncomePerSecond: 115.0, // ~ R$ 6.900 por minuto
+    baseIncomePerSecond: 25.0, // ~ R$ 6.900 por minuto
     upgradeCostFactor: 1.8,
     description: 'Opere frotas logísticas de pesados e lidere o escoamento de cargas interestaduais de alta periculosidade.',
     icon: 'Truck',
@@ -666,7 +666,7 @@ export const BUSINESSES: Business[] = [
     id: 'concessionaria',
     name: 'Concessionária de Importados',
     price: 1500000,
-    baseIncomePerSecond: 280.0, // ~ R$ 16.800 por minuto
+    baseIncomePerSecond: 45.0, // ~ R$ 16.800 por minuto
     upgradeCostFactor: 2.0,
     description: 'Comande a venda de carros esportivos de luxo exóticos e domine o ecossistema de alto rendimento do RP.',
     icon: 'Store',
@@ -715,7 +715,7 @@ export const JOBS: Job[] = [
     id: 'delivery_job',
     name: 'Entregador de Aplicativo',
     description: 'Suba na bicicleta ou na moto e faça entregas de hambúrguer e lanches.',
-    baseReward: 50,
+    baseReward: 65,
     xpReward: 15,
     energyCost: 10,
     requiredVehicleId: null, // can play with bare feet, but upgraded if has bike/moto
@@ -731,7 +731,7 @@ export const JOBS: Job[] = [
     id: 'app_driver_job',
     name: 'Motorista de Aplicativo (Uber)',
     description: 'Rode de carro atendendo passageiros apressados na zona sul e centro.',
-    baseReward: 150,
+    baseReward: 120,
     xpReward: 35,
     energyCost: 15,
     requiredVehicleId: 'voyage', // Requires Gol or better
@@ -747,7 +747,7 @@ export const JOBS: Job[] = [
     id: 'mechanic_job',
     name: 'Mecânico de Garagem',
     description: 'Faça alinhamento, troque o óleo e prepare motores AP turbinados na oficina local.',
-    baseReward: 290,
+    baseReward: 180,
     xpReward: 55,
     energyCost: 18,
     requiredVehicleId: null,
@@ -763,7 +763,7 @@ export const JOBS: Job[] = [
     id: 'taxi_job',
     name: 'Taxista do Ponto Central',
     description: 'Trabalhe no ponto de táxi central levando executivos e turistas no táxi amarelo.',
-    baseReward: 430,
+    baseReward: 250,
     xpReward: 70,
     energyCost: 20,
     requiredVehicleId: 'spin_taxi', // Requires Taxi or better
@@ -779,7 +779,7 @@ export const JOBS: Job[] = [
     id: 'police_job',
     name: 'Policial Militar',
     description: 'Faça patrulhamento preventivo, atenda ocorrências de rádio e persiga infratores.',
-    baseReward: 820,
+    baseReward: 400,
     xpReward: 130,
     energyCost: 25,
     requiredVehicleId: null,
@@ -795,7 +795,7 @@ export const JOBS: Job[] = [
     id: 'trucker_job',
     name: 'Caminhoneiro Autônomo',
     description: 'Transporte cargas pesadas pelas rodovias estaduais, escapando de buracos e pedágios.',
-    baseReward: 1350,
+    baseReward: 600,
     xpReward: 190,
     energyCost: 35,
     requiredVehicleId: 'scania_113', // Requires Truck
@@ -811,7 +811,7 @@ export const JOBS: Job[] = [
     id: 'doctor_job',
     name: 'Médico do SAMU',
     description: 'Atenda chamados de urgência e realize reanimações cardíacas rápidas para salvar pacientes.',
-    baseReward: 2400,
+    baseReward: 900,
     xpReward: 380,
     energyCost: 40,
     requiredVehicleId: null,
