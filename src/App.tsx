@@ -81,7 +81,6 @@ export default function App() {
   const [activeJob, setActiveJob] = useState<Job | null>(null);
   const [jobMinigameState, setJobMinigameState] = useState<'idle' | 'playing' | 'success' | 'failure'>('idle');
   const [jailTimer, setJailTimer] = useState(0);
-  const [activeEvent, setActiveEvent] = useState<EconomyEvent | null>(null);
   const [activeBoosterType, setActiveBoosterType] = useState<'double_salary' | 'free_energy' | 'double_crime' | null>(null);
   const [boosterTimeRemaining, setBoosterTimeRemaining] = useState<number>(0);
   const [globalLeaderboard, setGlobalLeaderboard] = useState<SimulatedLeaderboardEntry[]>([]);
