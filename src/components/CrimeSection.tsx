@@ -326,7 +326,7 @@ export default function CrimeSection({
     if (selectedLaunderMethod === 'dealer') {
       return {
         name: 'Doleiro Corrupto da Favela (Beco)',
-        feePercent: 40,
+        feePercent: 50,
         maxLimit: 15000,
         seizeChance: 12,
         unlocked: true,
@@ -356,27 +356,27 @@ export default function CrimeSection({
     
     switch (selectedBusinessLaunderId) {
       case 'lava_jato':
-        fee = 25;
+        fee = 45;
         limit = 12000;
         break;
       case 'oficina':
-        fee = 20;
+        fee = 40;
         limit = 35000;
         break;
       case 'mercado_bairro':
-        fee = 15;
+        fee = 35;
         limit = 120000;
         break;
       case 'posto_combustivel':
-        fee = 10;
+        fee = 30;
         limit = 350000;
         break;
       case 'transportadora':
-        fee = 5;
+        fee = 28;
         limit = 1000000;
         break;
       case 'concessionaria':
-        fee = 0;
+        fee = 25;
         limit = 10000000; // unlimited basically
         break;
     }
