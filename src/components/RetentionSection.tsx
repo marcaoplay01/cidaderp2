@@ -478,7 +478,7 @@ export default function RetentionSection({
               <div className="md:col-span-8 rounded-2xl border border-zinc-900 bg-zinc-950/40 p-5 space-y-6">
                 
                 {/* Category switch filter */}
-                <div className="flex border-b border-zinc-900">
+                <div className="flex border-b border-zinc-900 overflow-x-auto whitespace-nowrap scrollbar-hide pb-1">
                   <button
                     onClick={() => { playSound('click'); setActiveCategory('chavoso'); }}
                     className={`pb-3 text-[10px] sm:text-xs whitespace-nowrap font-bold uppercase font-orbitron tracking-wider px-2 sm:px-4 border-b-2 transition ${

@@ -1315,7 +1315,7 @@ export default function App() {
     showToast(`Escritura vendida! R$ ${refundCash.toLocaleString('pt-BR')} creditados no seu saldo corporativo.`, 'info');
   };
 
-  const handleRestFinished = (amountToRestore: number) => {
+    const handleRestFinished = useCallback((amountToRestore: number) => {
     updatePlayerState(prev => {
       const finalEnergy = Math.min(prev.maxEnergy, prev.energy + amountToRestore);
       return {
@@ -1324,7 +1324,7 @@ export default function App() {
       };
     }, true);
     showToast('Fadiga recarregada! Você está pronto para acelerar.', 'success');
-  };
+  }, [updatePlayerState]);
 
   // BUY AND UPGRADE COMPANIES (BUSINESSES)
   const handleBuyBusiness = (business: Business) => {

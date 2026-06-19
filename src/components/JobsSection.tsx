@@ -300,7 +300,7 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
                     return (
                       <div
                         key={idx}
-                        className={`h-11 w-11 md:h-14 md:w-14 rounded-lg flex items-center justify-center font-bold text-xl md:text-2xl transition-all border duration-200 ${
+                        className={`h-9 w-9 sm:h-11 sm:w-11 md:h-14 md:w-14 shrink-0 rounded-lg flex items-center justify-center font-bold text-lg sm:text-xl md:text-2xl transition-all border duration-200 ${
                           isPassed 
                             ? 'bg-green-500 border-green-400 text-black shadow-lg shadow-green-500/20 font-mono' 
                             : isActive 
@@ -325,7 +325,7 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
                   <button
                     id="gps-key-up"
                     onClick={() => handleDirectionPress('UP')}
-                    className="h-12 w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
+                    className="h-10 w-14 sm:h-12 sm:w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
                   >
                     ▲
                   </button>
@@ -333,21 +333,21 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
                     <button
                       id="gps-key-left"
                       onClick={() => handleDirectionPress('LEFT')}
-                      className="h-12 w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
+                      className="h-10 w-14 sm:h-12 sm:w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
                     >
                       ◀
                     </button>
                     <button
                       id="gps-key-down"
                       onClick={() => handleDirectionPress('DOWN')}
-                      className="h-12 w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
+                      className="h-10 w-14 sm:h-12 sm:w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
                     >
                       ▼
                     </button>
                     <button
                       id="gps-key-right"
                       onClick={() => handleDirectionPress('RIGHT')}
-                      className="h-12 w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
+                      className="h-10 w-14 sm:h-12 sm:w-16 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 hover:border-zinc-500 text-white rounded-lg flex items-center justify-center font-bold text-xl active:bg-green-500 active:text-black active:border-green-400 transition-all font-mono shadow-md shadow-black"
                     >
                       ▶
                     </button>
@@ -355,7 +355,7 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
                 </div>
               </div>
 
-              <div className="flex justify-end pt-2 border-t border-zinc-900">
+              <div className="flex justify-end pt-2 mt-2 border-t border-zinc-900">
                 <button
                   id="btn-abort-gps"
                   onClick={() => {

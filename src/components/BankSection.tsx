@@ -816,16 +816,16 @@ export default function BankSection({ player, updatePlayerState, showToast }: Ba
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div className="bg-zinc-950/60 border border-zinc-900/80 p-3 rounded-xl font-mono text-left">
           <span className="text-[10px] text-zinc-500 uppercase block font-sans font-bold">Saldo Corrente</span>
-          <strong className="text-lg text-emerald-400">R$ {checkingBalance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>
+          <strong className="text-sm sm:text-lg text-emerald-400 truncate block">R$ {checkingBalance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>
         </div>
         <div className="bg-zinc-950/60 border border-zinc-900/80 p-3 rounded-xl font-mono text-left">
           <span className="text-[10px] text-zinc-500 uppercase block font-sans font-bold">Saldo Poupança</span>
-          <strong className="text-lg text-yellow-500">R$ {savingsBalance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>
-          <span className="block text-[9px] text-emerald-500 font-sans font-bold mt-0.5">Rendendo +0.25% p/ tick</span>
+          <strong className="text-sm sm:text-lg text-yellow-500 truncate block">R$ {savingsBalance.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>
+          <span className="block text-[9px] text-emerald-500 font-sans font-bold mt-0.5">Rendendo ativamente</span>
         </div>
         <div className="bg-zinc-950/60 border border-zinc-900/80 p-3 rounded-xl font-mono text-left">
           <span className="text-[10px] text-zinc-500 uppercase block font-sans font-bold">Ativos Investidos</span>
-          <strong className="text-lg text-blue-400">
+          <strong className="text-sm sm:text-lg text-blue-400 truncate block">
             R$ {(
               (investments.tesouro || 0) + 
               (investments.cdb || 0) + 
@@ -836,7 +836,7 @@ export default function BankSection({ player, updatePlayerState, showToast }: Ba
         </div>
         <div className="bg-zinc-950/60 border border-zinc-900/80 p-3 rounded-xl font-mono text-left">
           <span className="text-[10px] text-zinc-500 uppercase block font-sans font-bold">Dívidas Ativas</span>
-          <strong className={`text-lg ${loans.length + financings.length > 0 ? 'text-red-400' : 'text-zinc-500'}`}>
+          <strong className={`text-sm sm:text-lg truncate block ${loans.length + financings.length > 0 ? 'text-red-400' : 'text-zinc-500'}`}>
             R$ {(
               loans.reduce((sum, l) => sum + l.amountRemaining, 0) +
               financings.reduce((sum, f) => sum + f.amountRemaining, 0)
