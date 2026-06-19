@@ -573,7 +573,17 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
               ((job.requiredLicense === 'driver' && !player.hasDriversLicense) ||
                (job.requiredLicense === 'truck' && !player.hasTruckLicense));
 
-            const isLocked = levelLocked || needsVehicle || needsLicense;
+            let requiredWorkPermit = null;
+            if (job.id === 'app_driver_job') requiredWorkPermit = 'alvara_app';
+            if (job.id === 'trucker_job') requiredWorkPermit = 'licenca_antt';
+            if (job.id === 'doctor_job') requiredWorkPermit = 'crm_ativo';
+            if (job.id === 'armeiro_clandestino') requiredWorkPermit = 'contato_submundo';
+
+            const needsPermit = requiredWorkPermit ? !(player.workPermits || []).includes(requiredWorkPermit) : false;
+
+            const repLocked = job.criminalReputationRequired && (player.criminalReputation || 0) < job.criminalReputationRequired;
+
+            const isLocked = levelLocked || repLocked || needsVehicle || needsLicense || needsPermit;
 
             // Compute current Career Level & multipliers
             const currentCareer = (player.careers && player.careers[job.id]) || { level: 1, xp: 0 };
