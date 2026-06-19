@@ -57,6 +57,8 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
   const [gameMessage, setGameMessage] = useState('');
   const [timerLeft, setTimerLeft] = useState(15);
   const [deliveryFinished, setDeliveryFinished] = useState(false);
+  const [activeRandomEvent, setActiveRandomEvent] = useState<any>(null);
+  const [showEventModal, setShowEventModal] = useState(false);
   const [earnedSummary, setEarnedSummary] = useState<{
     baseCash: number;
     vehicleBonusCash: number;
@@ -253,6 +255,49 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
         </div>
       )}
       
+      {/* STRESS BAR */}
+      <div className="bg-zinc-950/40 border border-zinc-800 p-4 rounded-xl flex flex-col gap-2">
+        <div className="flex justify-between items-center">
+          <span className="text-xs font-bold text-zinc-300">🧠 Estresse Mental / Trânsito</span>
+          <span className="text-xs font-mono font-bold text-orange-400">{player.stress || 0}%</span>
+        </div>
+        <div className="w-full bg-zinc-900 h-2 rounded-full overflow-hidden">
+          <div 
+            className="h-full transition-all duration-500 bg-gradient-to-r from-emerald-500 via-orange-500 to-red-600"
+            style={{ width: `${Math.min(100, player.stress || 0)}%` }}
+          />
+        </div>
+        <div className="text-[10px] text-zinc-500">
+          {(player.stress || 0) < 21 ? 'Tranquilo' : (player.stress || 0) < 51 ? 'Cansado (-15% Chance de Dobro)' : (player.stress || 0) < 81 ? 'Estressado (-1s Tempo no Minigame)' : 'Esgotado (+50% Custo de Energia)'}
+        </div>
+      </div>
+
+      {showEventModal && activeRandomEvent && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="bg-zinc-900 border border-zinc-700 rounded-2xl max-w-sm w-full p-6 text-center animate-bounce-in">
+            <h2 className="text-xl font-black text-amber-500 mb-2">⚠️ EVENTO ALEATÓRIO!</h2>
+            <p className="text-zinc-300 text-sm mb-4">{activeRandomEvent.desc}</p>
+            <div className="bg-red-500/10 border border-red-500/20 rounded p-2 mb-6">
+               <p className="text-xs font-mono text-red-400">{activeRandomEvent.riskDesc}</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <button 
+                onClick={() => activeRandomEvent.onAccept()} 
+                className="w-full bg-amber-600 hover:bg-amber-500 text-white font-bold py-3 rounded-xl transition"
+              >
+                Aceitar o Risco
+              </button>
+              <button 
+                onClick={() => activeRandomEvent.onDecline()} 
+                className="w-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-bold py-3 rounded-xl transition"
+              >
+                Recusar e seguir seguro
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Background/Current job status */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-zinc-950/40 px-5 py-4">
         <div className="flex items-center gap-3">

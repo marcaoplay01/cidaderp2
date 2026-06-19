@@ -1044,7 +1044,10 @@ export default function App() {
       const preBonusCash = baselineSalary + vehicleBonusCash;
 
       // Bonus chance formula (increased by career level)
-      const bonusChanceTotal = Math.min(75, job.bonusChance + (currentCareer.level - 1) * 2);
+      let bonusChanceTotal = Math.min(75, job.bonusChance + (currentCareer.level - 1) * 2);
+      if ((prev.stress || 0) >= 21 && (prev.stress || 0) <= 50) {
+        bonusChanceTotal = Math.max(0, bonusChanceTotal - 15); // -15% chance if stressed
+      }
       const isBonusTriggered = (Math.random() * 100) < bonusChanceTotal;
       const bonusCash = isBonusTriggered ? preBonusCash : 0; // double cash if bonus triggers
       const totalEarnedCash = preBonusCash + bonusCash;
@@ -1061,6 +1064,10 @@ export default function App() {
       }
 
       let energyDeduction = job.energyCost;
+      let currentStress = prev.stress || 0;
+      if (currentStress >= 81) {
+        energyDeduction = Math.floor(energyDeduction * 1.5); // +50% energy cost for High Stress
+      }
       if (energyCostReduction > 0 || boosterReductionFactor < 1.0) {
         energyDeduction = Math.floor(energyDeduction * (1 - (energyCostReduction / 100)) * boosterReductionFactor);
         energyDeduction = Math.max(1, energyDeduction);

@@ -49,6 +49,7 @@ export interface PlayerState {
   level: number;
   xp: number;
   energy: number;
+  stress?: number;
   maxEnergy: number;
   currentVehicleId: string | null;
   currentPropertyId: string;
@@ -192,6 +193,7 @@ export interface FoodItem {
   name: string;
   price: number;
   energyRestore: number;
+  stressRestore?: number;
   icon: string;
   description: string;
 }
@@ -725,7 +727,25 @@ export const BUSINESSES: Business[] = [
 ];
 
 export const FOOD_ITEMS: FoodItem[] = [
+
   {
+    id: 'cafe_premium',
+    name: 'Café Premium Gourmet',
+    price: 150,
+    energyRestore: 10,
+    stressRestore: 15,
+    icon: 'Coffee',
+    description: 'Café caro de franquia gringa. Reduz 15% de Estresse Mental.',
+  },
+  {
+    id: 'balada_vip',
+    name: 'Pulseira Camarote Balada VIP',
+    price: 3000,
+    energyRestore: 0,
+    stressRestore: 100,
+    icon: 'Sparkles',
+    description: 'Noitada insana com os contatos. Zera TODO o seu Estresse Mental.',
+  },  {
     id: 'cafesinho',
     name: 'Pingado com Pão na Chapa',
     price: 6,
