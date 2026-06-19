@@ -298,6 +298,37 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
         </div>
       )}
 
+      {/* DAILY CONTRACTS */}
+      {(player.dailyContracts && player.dailyContracts.length > 0) && (
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+           <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <Award className="w-4 h-4 text-amber-500" /> 
+              Contratos Corporativos do Dia
+           </h3>
+           <div className="space-y-2">
+              {player.dailyContracts.map(contract => (
+                 <div key={contract.id} className="flex justify-between items-center bg-zinc-950 p-3 rounded-lg border border-zinc-800">
+                    <div>
+                       <div className="text-sm font-bold text-zinc-200 flex items-center gap-2">
+                          {contract.completed ? <Check className="w-4 h-4 text-emerald-500" /> : null}
+                          <span className={contract.completed ? 'line-through text-zinc-500' : ''}>{contract.title}</span>
+                       </div>
+                       <div className="text-xs text-zinc-500 mt-1">{contract.description}</div>
+                       <div className="text-xs font-mono text-amber-400 mt-1">
+                          Recompensa: R$ {contract.rewardValue.toLocaleString('pt-BR')}
+                       </div>
+                    </div>
+                    <div className="text-right">
+                       <div className="text-sm font-mono font-bold text-zinc-300">
+                          {contract.progress} / {contract.goal}
+                       </div>
+                    </div>
+                 </div>
+              ))}
+           </div>
+        </div>
+      )}
+
       {/* Background/Current job status */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-zinc-950/40 px-5 py-4">
         <div className="flex items-center gap-3">
@@ -611,7 +642,7 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
                           {job.name}
                         </h4>
                         <span className="text-[10px] text-zinc-500 font-mono block">
-                          Requisitos: LVL {job.levelRequired} {job.criminalReputationRequired ? '• Rep. ' + job.criminalReputationRequired : ''} • {job.requiredLicense === 'none' ? 'Sem CNH' : job.requiredLicense === 'driver' ? 'CNH B' : 'CNH E'}
+                          Requisitos: LVL {job.levelRequired} {job.criminalReputationRequired ? '• Rep. ' + job.criminalReputationRequired : ''} • {job.requiredLicense === 'none' ? 'Sem CNH' : job.requiredLicense === 'driver' ? 'CNH B' : 'CNH E'} {requiredWorkPermit ? '• Alvará Necessário' : ''}
                         </span>
                       </div>
                     </div>

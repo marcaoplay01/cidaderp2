@@ -75,7 +75,7 @@ export interface PlayerState {
     doctorJobsCompleted?: number;
     totalOfflineEarningsClaimed?: number; // Offline earnings tracking
   };
-  careers?: { [jobId: string]: { level: number; xp: number } };
+  careers?: { [jobId: string]: { level: number; xp: number; unlockedPerks?: string[] } };
   retention?: {
     lastLoginDate?: string; // YYYY-MM-DD
     loginStreak?: number; // 0-7
