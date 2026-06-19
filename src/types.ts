@@ -140,6 +140,7 @@ export interface Job {
   requiredLicense: 'none' | 'driver' | 'truck';
   xpRequired: number;
   levelRequired: number;
+  criminalReputationRequired?: number;
   icon: string; // Lucide icon alias
   activeMinigameTitle: string;
   executionTime: number; // base seconds available for minigame
@@ -771,6 +772,7 @@ export const JOBS: Job[] = [
     requiredLicense: null,
     xpRequired: 1500,
     levelRequired: 6,
+    criminalReputationRequired: 200,
     icon: 'Hammer',
     activeMinigameTitle: 'Prensando Pólvora',
     executionTime: 8,

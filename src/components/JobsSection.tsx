@@ -566,7 +566,7 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
                           {job.name}
                         </h4>
                         <span className="text-[10px] text-zinc-500 font-mono block">
-                          Requisitos: LVL {job.levelRequired} • {job.requiredLicense === 'none' ? 'Sem CNH' : job.requiredLicense === 'driver' ? 'CNH B' : 'CNH E'}
+                          Requisitos: LVL {job.levelRequired} {job.criminalReputationRequired ? '• Rep. ' + job.criminalReputationRequired : ''} • {job.requiredLicense === 'none' ? 'Sem CNH' : job.requiredLicense === 'driver' ? 'CNH B' : 'CNH E'}
                         </span>
                       </div>
                     </div>
