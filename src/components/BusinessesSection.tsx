@@ -530,7 +530,7 @@ export default function BusinessesSection({
                     <div className="grid grid-cols-2 gap-4 py-2.5 px-3 bg-zinc-900/20 border border-zinc-900/60 rounded-xl font-mono text-[11px] text-zinc-400">
                       <div>
                         <span className="text-[8px] block uppercase text-zinc-500 font-sans">Retorno por minuto</span>
-                        <strong className="text-emerald-400">R$ {b.revenuePerCycle).toFixed(0)}/ciclo</strong>
+                        <strong className="text-emerald-400">R$ {(b.revenuePerCycle).toFixed(0)}/ciclo</strong>
                       </div>
                       <div>
                         <span className="text-[8px] block uppercase text-zinc-500 font-sans">Reforma Multiplicadora</span>

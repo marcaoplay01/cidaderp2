@@ -502,8 +502,6 @@ export default function App() {
         });
 
         
-        // Taxas (IPTU, IPVA, Seguros) - O "Leão" cobra 0.2% do patrimônio a cada 60s (0.0033% ao segundo)
-        
         let totalNetWorth = 0;
         prev.ownedVehicles.forEach(id => { const v = VEHICLES.find(x => x.id === id); if(v) totalNetWorth += v.price; });
         prev.ownedProperties.forEach(id => { const p = PROPERTIES.find(x => x.id === id); if(p) totalNetWorth += p.price; });
@@ -514,7 +512,6 @@ export default function App() {
         else if (totalNetWorth > 10000000) taxRate = 0.0025;
 
         const taxDrainPerSec = (totalNetWorth * taxRate) / 60;
-
         const cashGained = (propertyPassivePerSec - taxDrainPerSec) * deltaSec;
 
 
@@ -1648,27 +1645,382 @@ export default function App() {
 
         {/* Navigation Tabs Bar */}
         <nav id="navbar-dashboard" className="grid grid-cols-4 lg:grid-cols-8 gap-2 bg-zinc-950/90 backdrop-blur-2xl border border-zinc-900 rounded-2xl p-1.5 shadow-2xl sticky top-2 z-[60]">
+          <button
+            id="nav-jobs"
+            onClick={() => { playSound('click'); setActiveTab('jobs'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron ${
+              activeTab === 'jobs'
+                ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-black shadow-lg shadow-yellow-500/20'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+            }`}
+          >
+            <Briefcase className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Trabalhos</span>
+          </button>
+
+          <button
+            id="nav-vehicles"
+            onClick={() => { playSound('click'); setActiveTab('vehicles'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron ${
+              activeTab === 'vehicles'
+                ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-black shadow-lg shadow-yellow-500/20'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+            }`}
+          >
+            <Key className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Garagem</span>
+          </button>
+
+          <button
+            id="nav-properties"
+            onClick={() => { playSound('click'); setActiveTab('properties'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron ${
+              activeTab === 'properties'
+                ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-black shadow-lg shadow-yellow-500/20'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+            }`}
+          >
+            <HomeIcon className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Imóveis</span>
+          </button>
+
+          <button
+            id="nav-businesses"
+            onClick={() => { playSound('click'); setActiveTab('businesses'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron ${
+              activeTab === 'businesses'
+                ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-black shadow-lg shadow-yellow-500/20'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+            }`}
+          >
+            <TrendingUp className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Empresas</span>
+          </button>
+
+          <button
+            id="nav-bank"
+            onClick={() => { playSound('click'); setActiveTab('bank'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron ${
+              activeTab === 'bank'
+                ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-black shadow-lg shadow-yellow-500/20'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+            }`}
+          >
+            <Landmark className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Banco</span>
+          </button>
+
+          <button
+            id="nav-store"
+            onClick={() => { playSound('click'); setActiveTab('store'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron ${
+              activeTab === 'store'
+                ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-black shadow-lg shadow-yellow-500/20'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+            }`}
+          >
+            <ShoppingBag className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Lanchonete</span>
+          </button>
+
+          <button
+            id="nav-crime"
+            onClick={() => { playSound('click'); setActiveTab('crime'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron relative ${
+              activeTab === 'crime'
+                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white font-black shadow-lg shadow-red-650/40'
+                : 'text-rose-400 hover:text-rose-100 hover:bg-rose-950/20'
+            }`}
+          >
+            <Skull className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Submundo</span>
+            {(player.dirtyCash || 0) > 0 && (
+              <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+            )}
+          </button>
+
+          <button
+            id="nav-factions"
+            onClick={() => { playSound('click'); setActiveTab('factions'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron relative ${
+              activeTab === 'factions'
+                ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white font-black shadow-lg shadow-red-650/40'
+                : 'text-red-400 hover:text-red-100 hover:bg-red-950/20'
+            }`}
+          >
+            <Swords className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Facções</span>
+            {player.faction && (
+              <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+              </span>
+            )}
+          </button>
+
+          <button
+            id="nav-stats"
+            onClick={() => { playSound('click'); setActiveTab('stats'); }}
+            className={`flex flex-col md:flex-row items-center justify-center gap-2 py-3 rounded-xl transition-all duration-300 text-center cursor-pointer font-orbitron ${
+              activeTab === 'stats'
+                ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-black font-black shadow-lg shadow-yellow-500/20'
+                : 'text-zinc-400 hover:text-white hover:bg-zinc-900/40'
+            }`}
+          >
+            <BarChart2 className="h-[18px] w-[18px]" />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-wider">Registro</span>
+          </button>
+        </nav>
+
+        {/* Rio de Janeiro Dynamic Financial Feed */}
+        <div id="economy-system-status-bar" className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl border border-zinc-900 bg-zinc-950/80 shadow-lg text-xs leading-relaxed">
+          <div className="flex items-center gap-3">
+            <div className={`h-8 w-8 rounded-full flex items-center justify-center text-lg animate-pulse ${activeEvent ? 'bg-amber-500/10 text-amber-400' : 'bg-green-500/10 text-green-400'}`}>
+              {activeEvent ? activeEvent.icon : '📈'}
+            </div>
+            <div>
+              <span className="text-zinc-500 uppercase text-[9px] font-bold block tracking-wider">Economia do Município</span>
+              {activeEvent ? (
+                <p className="text-zinc-100 font-extrabold flex items-center gap-1.5 uppercase tracking-wide">
+                  🔥 EVENTO EM CURSO: <span className="text-amber-400 font-black">{activeEvent.name}</span>
+                </p>
+              ) : (
+                <p className="text-green-400 font-black uppercase tracking-wide">
+                  🍀 Mercados em Equilíbrio Normal
+                </p>
+              )}
+            </div>
+          </div>
           
+          <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 border-zinc-900 pt-2 sm:pt-0">
+            {activeEvent ? (
+              <div className="text-right font-mono">
+                <span className="text-zinc-500 block text-[9px] uppercase">Normalização em</span>
+                <span className="text-amber-400 font-bold block">{activeEvent.durationSeconds}s</span>
+              </div>
+            ) : (
+              <div className="text-right font-mono">
+                <span className="text-zinc-500 block text-[9px] uppercase">Próximo Evento Econômico</span>
+                <span className="text-sky-450 font-extrabold block text-sky-400">⏱️ {nextEventInSeconds}s</span>
+              </div>
+            )}
+            
+            {/* Force Event cheat button for Admins/testers */}
+            <button
+              onClick={() => {
+                const available = ECONOMY_EVENTS.filter(e => !activeEvent || e.id !== activeEvent.id);
+                const randomChoose = available[Math.floor(Math.random() * available.length)];
+                setActiveEvent({ ...randomChoose, durationSeconds: randomChoose.maxDurationSeconds });
+                showToast(`🚨 EVENTO ECONÔMICO INCITADO: ${randomChoose.name}`, 'critical');
+                playSound('levelUp');
+              }}
+              className="px-2.5 py-1.5 bg-zinc-900 border border-zinc-800 hover:bg-zinc-850 hover:border-zinc-700 hover:text-white transition font-sans text-[10px] font-bold text-zinc-400 uppercase shrink-0 rounded-md"
+            >
+              ⚡ Forçar Evento
+            </button>
+          </div>
+        </div>
+
+        {/* Tab Routing Dynamic Content Board Rendering */}
+        <section id="tab-content-panel" className="bg-zinc-900/40 border border-zinc-900 rounded-2xl p-4 md:p-6 shadow-xl backdrop-blur-md relative overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+            >
+              {activeTab === 'jobs' && (
+            <JobsSection 
+              player={player} 
+              activeEvent={activeEvent}
+              onCompleteJob={handleCompleteActiveJob} 
+            />
+          )}
+
+          {activeTab === 'vehicles' && (
+            <VehiclesSection 
+              player={player} 
+              onBuyVehicle={handleBuyVehicle} 
+              onSelectVehicle={handleSelectVehicle} 
+              onSellVehicle={handleSellVehicle}
+            />
+          )}
+
+          {activeTab === 'properties' && (
+            <PropertiesSection 
+              player={player} 
+              activeEvent={activeEvent}
+              onBuyProperty={handleBuyProperty} 
+              onSelectProperty={handleSelectProperty} 
+              onRestComplete={handleRestFinished}
+              onSellProperty={handleSellProperty}
+            />
+          )}
+
+          {activeTab === 'businesses' && (
+            <BusinessesSection 
+              player={player} 
+              activeEvent={activeEvent}
+              onBuyBusiness={handleBuyBusiness} 
+              onUpgradeBusiness={handleUpgradeBusiness} 
+              onCollectBusinessProfits={handleCollectBusinessProfits}
+              onHireEmployee={handleHireEmployee}
+              accumulatedProfits={accumulatedProfits}
+            />
+          )}
+
+          {activeTab === 'bank' && (
+            <BankSection 
+              player={player}
+              updatePlayerState={updatePlayerState}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'store' && (
+            <StoreSection 
+              player={player}
+              onBuyFood={handleBuyFood}
+              onBuyDriversLicense={handleBuyDriversLicense}
+              onBuyTruckLicense={handleBuyTruckLicense}
+              onBuyVip={handleBuyVip}
+            />
+          )}
+
+          {activeTab === 'crime' && (
+            <CrimeSection 
+              player={player}
+              activeEvent={activeEvent}
+              onCommitCrimeSuccess={handleCommitCrimeSuccess}
+              onCommitCrimeFailure={handleCommitCrimeFailure}
+              onLaunderMoney={handleLaunderMoney}
+            />
+          )}
+
+          {activeTab === 'factions' && (
+            <FactionsSection
+              player={player}
+              updatePlayerState={updatePlayerState}
+              playSound={playSound}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'stats' && (
+            <RetentionSection
+              player={player}
+              onClaimDaily={handleClaimDailyReward}
+              onClaimQuest={handleClaimQuestReward}
+              onClaimWeekly={handleClaimWeeklyReward}
+              onBuyMysteryBox={handleBuyMysteryBox}
+              leaderboard={getLeaderboardList()}
+              onTriggerBooster={handleTriggerBooster}
+              onWipeSave={handleWipeSave}
+              activeBoosterType={activeBoosterType}
+              boosterTimeRemaining={boosterTimeRemaining}
+            />
+          )}
+            </motion.div>
+          </AnimatePresence>
+        </section>
+
+        {/* Footnote copyright bar holding literal details */}
+        <footer className="text-center text-[10px] text-zinc-600 mt-8 space-y-1 select-none leading-none">
+          <p>© {new Date().getFullYear()} Cidade RP Tycoon Brasil Corp. Todos os direitos reservados.</p>
+          <p className="font-mono">Porto 3000 • Protocolo de Servidor Local Seguro • HMR Inativo</p>
+        </footer>
+
+        {/* STREET RANDOM EVENT OVERLAYS */}
+        {activeStreetEvent && (
+          <RandomEvents
+            event={activeStreetEvent}
+            player={player}
+            onResolve={handleResolveEvent}
+          />
+        )}
+
+        {/* STREET RANDOM EVENT RESOLVED OUTCOME DIALOG */}
+        {eventOutcomeMsg && (
+          <div id="outcome-modal" className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 animate-fade-in backdrop-blur-sm">
+            <div className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl space-y-5 text-center">
+              <div className="h-14 w-14 rounded-full bg-green-500/10 text-green-400 text-3xl font-bold flex items-center justify-center mx-auto border border-green-500/20">
+                ⚡
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="text-lg font-extrabold uppercase tracking-tight text-white font-display">Resultado da Ocorrência</h4>
+                <p className="text-xs text-zinc-400 font-mono">Boletim de Ocorrência Registrado</p>
+              </div>
+
+              <p className="text-sm text-zinc-300 leading-relaxed bg-zinc-950/60 py-3.5 px-4 rounded-xl border border-zinc-900/60">
+                {eventOutcomeMsg}
+              </p>
+
+              <button
+                id="btn-close-outcome-modal"
+                onClick={() => {
+                  playSound('click');
+                  setEventOutcomeMsg(null);
+                }}
+                className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-lg text-xs uppercase tracking-wider transition active:scale-[0.98]"
+              >
+                Prosseguir Correria
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* PRISON LOCKUP / JAIL OVERLAY */}
+        {jailTimer > 0 && (
+          <div id="jail-overlay" className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-md">
+            <div className="w-full max-w-md border border-zinc-900 bg-zinc-950 p-6 rounded-2xl text-center space-y-6 relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-red-600 animate-pulse" />
+              
+              <div className="space-y-2">
+                <span className="text-4xl block animate-bounce">⛓️👮‍♂️</span>
+                <h3 className="text-xl font-black text-red-500 uppercase tracking-wider font-display">Prisão de Segurança Máxima</h3>
+                <p className="text-zinc-500 text-xs mt-1">
+                  Você foi detido sob acusação de crimes graves na Cidade RP. Aguarde sua pena ou colabore prestando serviços comunitários!
+                </p>
+              </div>
+
+              {/* Jail timer countdown */}
+              <div className="bg-zinc-900 border border-zinc-850 p-6 rounded-xl space-y-1">
+                <span className="text-[10px] text-zinc-500 uppercase font-sans tracking-widest block font-bold">Tempo de Pena Restante</span>
+                <strong className="text-3xl font-mono text-zinc-100 font-extrabold animate-pulse">
+                  {jailTimer} <em className="text-lg text-zinc-400 not-italic font-bold">segundos</em>
+                </strong>
+              </div>
+
+              <div className="space-y-2 select-none">
+                <p className="text-[10px] text-zinc-400 font-medium">
+                  Você pode acelerar sua soltura fazendo flexões ou limpando a cela para reduzir a pena! (Custa 8 EP • Reduz em 2 segundos)
+                </p>
+                
+                <div className="grid grid-cols-2 gap-2 text-xs">
                   <button
-                    id="btn-jail-cleanup"
+                    id="btn-jail-pushups"
                     onClick={() => {
-                      if (player.energy < 15) {
+                      if (player.energy < 8) {
                         playSound('error');
-                        alert('Energia insuficiente para a faxina pesada!');
+                        alert('Energia muito baixa para malhar! Aguarde alguns instantes na cela.');
                         return;
                       }
                       playSound('click');
                       updatePlayerState(prev => ({
                         ...prev,
-                        energy: Math.max(0, prev.energy - 15)
+                        energy: Math.max(0, prev.energy - 8)
                       }));
-                      setJailTimer(prev => Math.max(0, prev - 4));
-                      showToast('Faxina concluída! -4 segundos de pena.', 'success');
+                      setJailTimer(prev => Math.max(0, prev - 2));
+                      showToast('Você fez flexões! Força reforçada e pena reduzida em -2 segundos.', 'info');
                     }}
                     className="bg-zinc-900 hover:bg-zinc-850 text-zinc-350 hover:text-white font-bold py-3.5 px-3 rounded-xl border border-zinc-800 uppercase tracking-tight flex flex-col items-center justify-center gap-1 cursor-pointer transition active:scale-95"
                   >
-                    🧹 Limpar Cela
-                    <span className="text-[9px] text-zinc-500 font-bold font-mono">-15 EP / -4s Pena</span>
+                    💪 Fazer Flexões
+                    <span className="text-[9px] text-zinc-500 font-bold font-mono">-8 EP / -2s Pena</span>
                   </button>
 
                   <button
@@ -1694,6 +2046,28 @@ export default function App() {
                     <span className="text-[9px] text-amber-600/70 font-bold font-mono">-R$ {(jailTimer * 2000).toLocaleString('pt-BR')} / Soltura Imediata</span>
                   </button>
 
+
+                  <button
+                    id="btn-jail-cleanup"
+                    onClick={() => {
+                      if (player.energy < 8) {
+                        playSound('error');
+                        alert('Você está cansado demais para limpar o pátio! Aguarde um pouco na solidão.');
+                        return;
+                      }
+                      playSound('click');
+                      updatePlayerState(prev => ({
+                        ...prev,
+                        energy: Math.max(0, prev.energy - 8)
+                      }));
+                      setJailTimer(prev => Math.max(0, prev - 2));
+                      showToast('Você varreu a cela! Respeito dos agentes ganho e pena reduzida em -2 segundos.', 'info');
+                    }}
+                    className="bg-zinc-900 hover:bg-zinc-850 text-zinc-350 hover:text-white font-bold py-3.5 px-3 rounded-xl border border-zinc-800 uppercase tracking-tight flex flex-col items-center justify-center gap-1 cursor-pointer transition active:scale-95"
+                  >
+                    🧹 Limpar a Cela
+                    <span className="text-[9px] text-zinc-500 font-bold font-mono">-8 EP / -2s Pena</span>
+                  </button>
                 </div>
               </div>
 
