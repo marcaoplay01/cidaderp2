@@ -92,6 +92,7 @@ export interface PlayerState {
   bankLoans?: BankLoan[];
   bankFinancings?: BankFinancing[];
   bankInvestments?: InvestmentPortfolio;
+  lastTaxTime?: number;
   lastBankInterestTick?: number; // timestamp of last savings interest yield
   faction?: FactionType | null;
   factionRole?: FactionRole | null;
@@ -649,7 +650,7 @@ export const BUSINESSES: Business[] = [
   {
     id: 'lava_jato',
     name: 'Lava Jato',
-    price: 18000,
+    price: 20000,
     productionCycleTime: 300,
     revenuePerCycle: 200,
     upgradeCostFactor: 1.4,

@@ -502,17 +502,37 @@ export default function App() {
         });
 
         
-        let totalNetWorth = 0;
-        prev.ownedVehicles.forEach(id => { const v = VEHICLES.find(x => x.id === id); if(v) totalNetWorth += v.price; });
-        prev.ownedProperties.forEach(id => { const p = PROPERTIES.find(x => x.id === id); if(p) totalNetWorth += p.price; });
-        Object.keys(prev.ownedBusinesses).forEach(id => { const b = BUSINESSES.find(x => x.id === id); if(b) totalNetWorth += b.price; });
+        const now = Date.now();
+        const lastTax = prev.lastTaxTime || now;
+        let newLastTaxTime = lastTax;
+        let newCash = prev.cash;
+        let newChecking = prev.bankChecking || 0;
 
-        let taxRate = 0.002;
-        if (totalNetWorth > 50000000) taxRate = 0.005;
-        else if (totalNetWorth > 10000000) taxRate = 0.0025;
+        // 10 minutes = 600000 ms
+        if (now - lastTax >= 600000) {
+          const liquidity = newCash + newChecking;
+          let taxRate = 0;
+          
+          if (liquidity >= 50000000) taxRate = 0.05;
+          else if (liquidity >= 10000000) taxRate = 0.025;
+          else if (liquidity >= 1000000) taxRate = 0.01;
 
-        const taxDrainPerSec = (totalNetWorth * taxRate) / 60;
-        const cashGained = (propertyPassivePerSec - taxDrainPerSec) * deltaSec;
+          if (taxRate > 0) {
+            const taxAmount = liquidity * taxRate;
+            // Drain from checking first, then cash
+            if (newChecking >= taxAmount) {
+              newChecking -= taxAmount;
+            } else {
+              const remaining = taxAmount - newChecking;
+              newChecking = 0;
+              newCash -= remaining;
+            }
+            console.log('Leão cobrou: R$', taxAmount.toFixed(2));
+          }
+          newLastTaxTime = now;
+        }
+
+        const cashGained = propertyPassivePerSec * deltaSec;
 
 
         // Return early if no updates are needed
@@ -520,7 +540,6 @@ export default function App() {
           return prev;
         }
 
-        const nextCash = prev.cash + cashGained;
         const nextEnergy = prev.energy >= prev.maxEnergy 
           ? prev.energy 
           : Math.min(prev.maxEnergy, prev.energy + (regenRatePerSecond * deltaSec));
@@ -533,7 +552,9 @@ export default function App() {
         // Only update state if there is any actual fractional jump to prevent unnecessary lag
         return {
           ...prev,
-          cash: Math.round(nextCash * 100) / 100,
+          cash: Math.round((newCash + cashGained) * 100) / 100,
+          bankChecking: newChecking,
+          lastTaxTime: newLastTaxTime,
           energy: Math.floor(nextEnergy),
           stats,
         };
