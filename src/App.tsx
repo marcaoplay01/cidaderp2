@@ -171,22 +171,7 @@ export default function App() {
         }
       });
 
-      let businessPassivePerSec = 0;
-      Object.keys(loaded.ownedBusinesses).forEach(id => {
-        const biz = BUSINESSES.find(b => b.id === id);
-        const playerBiz = loaded.ownedBusinesses[id];
-        if (biz && playerBiz) {
-          const employees = playerBiz.employeesCount || 0;
-          const employeeMult = 1 + (employees * 0.20);
-          businessPassivePerSec += biz.baseIncomePerSecond * playerBiz.level * employeeMult;
-        }
-      });
-
-      const ownedItems = prevRetention.ownedCollections || [];
-      const { passiveIncomeMultiplier } = getPassiveBonusMultipliers(ownedItems);
-      businessPassivePerSec = businessPassivePerSec * passiveIncomeMultiplier;
-
-      const totalPassiveRate = propertyPassivePerSec + businessPassivePerSec;
+      const totalPassiveRate = propertyPassivePerSec;
       const cappedSeconds = Math.min(43200, elapsedSeconds); // cap at 12 hours max offline idle
       totalOfflineEarningsSum = Math.round((totalPassiveRate * cappedSeconds) * 100) / 100;
 
@@ -518,12 +503,18 @@ export default function App() {
 
         
         // Taxas (IPTU, IPVA, Seguros) - O "Leão" cobra 0.2% do patrimônio a cada 60s (0.0033% ao segundo)
+        
         let totalNetWorth = 0;
         prev.ownedVehicles.forEach(id => { const v = VEHICLES.find(x => x.id === id); if(v) totalNetWorth += v.price; });
         prev.ownedProperties.forEach(id => { const p = PROPERTIES.find(x => x.id === id); if(p) totalNetWorth += p.price; });
         Object.keys(prev.ownedBusinesses).forEach(id => { const b = BUSINESSES.find(x => x.id === id); if(b) totalNetWorth += b.price; });
 
-        const taxDrainPerSec = (totalNetWorth * 0.002) / 60;
+        let taxRate = 0.002;
+        if (totalNetWorth > 50000000) taxRate = 0.005;
+        else if (totalNetWorth > 10000000) taxRate = 0.0025;
+
+        const taxDrainPerSec = (totalNetWorth * taxRate) / 60;
+
         const cashGained = (propertyPassivePerSec - taxDrainPerSec) * deltaSec;
 
 

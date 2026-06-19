@@ -174,7 +174,8 @@ export interface Business {
   id: string;
   name: string;
   price: number;
-  baseIncomePerSecond: number;
+  productionCycleTime: number; // in seconds
+  revenuePerCycle: number;
   upgradeCostFactor: number; // cost multiplier for upgrading
   description: string;
   icon: string;
@@ -649,7 +650,8 @@ export const BUSINESSES: Business[] = [
     id: 'lava_jato',
     name: 'Lava Jato',
     price: 18000,
-    baseIncomePerSecond: 0.5, // ~ R$ 90 por minuto
+    productionCycleTime: 300,
+    revenuePerCycle: 200,
     upgradeCostFactor: 1.4,
     description: 'Lave os importados e motos esportivas da quebrada. Seu primeiro negócio próprio na Cidade RP.',
     icon: 'Droplet',
@@ -660,7 +662,8 @@ export const BUSINESSES: Business[] = [
     id: 'oficina',
     name: 'Oficina Custom',
     price: 45000,
-    baseIncomePerSecond: 1.5, // ~ R$ 270 por minuto
+    productionCycleTime: 900,
+    revenuePerCycle: 1500,
     upgradeCostFactor: 1.5,
     description: 'Faça revisões mecânicas, upgrades de turbo de corrida e pintura neon em carros nacionais e importados.',
     icon: 'Wrench',
@@ -671,7 +674,8 @@ export const BUSINESSES: Business[] = [
     id: 'mercado_bairro',
     name: 'Mercado Express',
     price: 120000,
-    baseIncomePerSecond: 5.0, // ~ R$ 900 por minuto
+    productionCycleTime: 3600,
+    revenuePerCycle: 20000,
     upgradeCostFactor: 1.6,
     description: 'Gerencie o comércio local, as prateleiras de mantimentos e atenda os moradores do bairro.',
     icon: 'ShoppingBag',
@@ -682,7 +686,8 @@ export const BUSINESSES: Business[] = [
     id: 'posto_combustivel',
     name: 'Posto de Combustível',
     price: 350000,
-    baseIncomePerSecond: 12.0, // ~ R$ 3.000 por minuto
+    productionCycleTime: 14400,
+    revenuePerCycle: 180000,
     upgradeCostFactor: 1.7,
     description: 'O ponto de reabastecimento mais movimentado da rodovia de acesso à cidade grande.',
     icon: 'Fuel',
@@ -693,7 +698,8 @@ export const BUSINESSES: Business[] = [
     id: 'transportadora',
     name: 'Transportadora Express',
     price: 720000,
-    baseIncomePerSecond: 25.0, // ~ R$ 6.900 por minuto
+    productionCycleTime: 43200,
+    revenuePerCycle: 1000000,
     upgradeCostFactor: 1.8,
     description: 'Opere frotas logísticas de pesados e lidere o escoamento de cargas interestaduais de alta periculosidade.',
     icon: 'Truck',
@@ -704,7 +710,8 @@ export const BUSINESSES: Business[] = [
     id: 'concessionaria',
     name: 'Concessionária de Importados',
     price: 1500000,
-    baseIncomePerSecond: 45.0, // ~ R$ 16.800 por minuto
+    productionCycleTime: 86400,
+    revenuePerCycle: 3500000,
     upgradeCostFactor: 2.0,
     description: 'Comande a venda de carros esportivos de luxo exóticos e domine o ecossistema de alto rendimento do RP.',
     icon: 'Store',

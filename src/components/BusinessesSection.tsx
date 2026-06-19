@@ -57,7 +57,9 @@ export default function BusinessesSection({
   // Helper to calculate current income per minute
   const getIncomePerMinute = (business: Business, currentLvl: number, employeesCount: number) => {
     const employeeMultiplier = 1 + (employeesCount * 0.20); // +20% bonus per worker
-    let income = Math.floor(business.baseIncomePerSecond * currentLvl * employeeMultiplier * 60);
+    
+    let income = Math.floor(business.revenuePerCycle * currentLvl * employeeMultiplier);
+
     if (activeEvent?.id === 'crise_economica') {
       income = Math.floor(income * 0.7); // reduced by 30% during crisis
     }
@@ -384,7 +386,17 @@ export default function BusinessesSection({
                         <Coins className="h-4 w-4" /> Sacar Cofre: R$ {accumulatedInSafe.toFixed(2)}
                       </button>
 
+                      
+                      <div className="mt-2">
+                        <button
+                          onClick={() => handleCollect(business.id)}
+                          className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-3 rounded-lg flex items-center justify-center gap-2 transition active:scale-95 mb-2"
+                        >
+                          💰 Coletar Faturamento
+                        </button>
+                      </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-sans">
+
                         {/* Upgrade/Reforma section */}
                         <div className="space-y-1.5">
                           <span className="text-[9px] text-zinc-500 font-mono uppercase block">Sede Comercial</span>
@@ -518,7 +530,7 @@ export default function BusinessesSection({
                     <div className="grid grid-cols-2 gap-4 py-2.5 px-3 bg-zinc-900/20 border border-zinc-900/60 rounded-xl font-mono text-[11px] text-zinc-400">
                       <div>
                         <span className="text-[8px] block uppercase text-zinc-500 font-sans">Retorno por minuto</span>
-                        <strong className="text-emerald-400">R$ {(b.baseIncomePerSecond * 60).toFixed(0)}/m</strong>
+                        <strong className="text-emerald-400">R$ {b.revenuePerCycle).toFixed(0)}/ciclo</strong>
                       </div>
                       <div>
                         <span className="text-[8px] block uppercase text-zinc-500 font-sans">Reforma Multiplicadora</span>

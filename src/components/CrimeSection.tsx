@@ -291,7 +291,8 @@ export default function CrimeSection({
       playSound('cash');
     } else {
       // ARREST / BUST PATTERN
-      const penaltyFine = act.fine;
+            const proportionalFine = Math.floor(player.cash * 0.05); // 5% of all their money
+      const penaltyFine = Math.max(act.fine, proportionalFine);
       let prisonSeconds = act.jailTime;
       
       // EVENT MODIFIER: double jail time during police lockdown
