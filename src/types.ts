@@ -97,6 +97,8 @@ export interface PlayerState {
   faction?: FactionType | null;
   factionRole?: FactionRole | null;
   factionXp?: number;
+  ammo?: number; // Poder de Fogo (Munição)
+  donatedToFaction?: { cash: number; ammo: number; };
 }
 
 export interface BankLoan {
@@ -757,6 +759,23 @@ export const FOOD_ITEMS: FoodItem[] = [
 ];
 
 export const JOBS: Job[] = [
+
+  {
+    id: 'armeiro_clandestino',
+    name: 'Armeiro Clandestino',
+    description: 'Funda sucatas de chumbo para fabricar munição e armas no porão. O produto pode ser vendido ou doado para facções.',
+    baseReward: 1200,
+    xpReward: 100,
+    energyCost: 40,
+    requiredVehicleId: null,
+    requiredLicense: null,
+    xpRequired: 1500,
+    levelRequired: 6,
+    icon: 'Hammer',
+    activeMinigameTitle: 'Prensando Pólvora',
+    executionTime: 8,
+    bonusChance: 0,
+  },
   {
     id: 'delivery_job',
     name: 'Entregador de Aplicativo',

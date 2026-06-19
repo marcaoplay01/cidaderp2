@@ -422,6 +422,17 @@ export default function JobsSection({ player, activeEvent, onCompleteJob }: Jobs
                   </strong>
                 </div>
 
+                {earnedSummary?.ammoDropped ? (
+                  <div className="flex justify-between items-center bg-orange-500/[0.1] border border-orange-500/30 px-3 py-2.5 rounded-lg text-sm text-white mt-2">
+                    <span className="font-bold flex items-center gap-1 text-orange-400">
+                      📦 MUNIÇÃO FABRICADA
+                    </span>
+                    <strong className="text-lg text-orange-300 font-black">
+                      +{earnedSummary.ammoDropped}
+                    </strong>
+                  </div>
+                ) : null}
+
                 {/* Career Level progress feedback */}
                 <div className="bg-zinc-950/70 border border-zinc-900 p-3 rounded-lg text-left space-y-2">
                   <div className="flex justify-between items-center">
